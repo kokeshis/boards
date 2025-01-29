@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{% block title %}
+{% extends "layout.html" %}
+{% block title %}Index{% endlock %}
 Board | MyApp
 {% endblock %}
 {% block content %}
@@ -7,14 +8,15 @@ Board | MyApp
 <h1>a</h1>
 {{insert}}
 
-<p>{{　insert_forms|linebreaksbr }}</p>
-<p class="h6 my-3">{{msg}}</p>
-<form action="{% url 'myapp:form' %}" method="post">
-    {% csrf_token %}
-    <label for="msg" class="form-label">message: </label>
-    <input id="msg" type="text" name="msg" class="form-control">
-    <input type="submit" value="click" class="btn btn-primary">
-</form>
+{% block header %}
+<h1 class="display-4 text-primary">SNS</h1>
+{% if messages %}
+<div class="alert alert-primary alert-dismissible fade show" role="alert">
+    {% for message in messages %}
+        <p>{{ message }}</p>
+</div>
+
+
 
 
 {% endblock %}
