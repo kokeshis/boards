@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}
+Board | MyApp
+{% endblock %}
+{% block content %}
+
+<h1>a</h1>
+{{insert}}
+
+<p>{{　insert_forms|linebreaksbr }}</p>
+<p class="h6 my-3">{{msg}}</p>
+<form action="{% url 'myapp:form' %}" method="post">
+    {% csrf_token %}
+    <label for="msg" class="form-label">message: </label>
+    <input id="msg" type="text" name="msg" class="form-control">
+    <input type="submit" value="click" class="btn btn-primary">
+</form>
+
+
+{% endblock %}

@@ -15,6 +15,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+STATIC_DIR = Path.joinpath(BASE_DIR, "static")
 
 
 # Quick-start development settings - unsuitable for production
@@ -33,6 +34,7 @@ ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app", "localhost"]
 
 INSTALLED_APPS = [
     "login.apps.LoginConfig",
+    "myapp.apps.MyappConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -56,7 +58,9 @@ ROOT_URLCONF = "apps.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [
+            os.path.join(BASE_DIR, "templates"),
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -76,28 +80,8 @@ WSGI_APPLICATION = "apps.wsgi.app"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    # "default": {
-    #     "ENGINE": "django.db.backends.sqlite3",
-    #     "NAME": BASE_DIR / "db.sqlite3",
-    # }
-    # "default": {
-    #     "ENGINE": "django.db.backends.mysql",
-    #     "NAME": "events",
-    #     "USER": "root",
-    #     "PASSWORD": "",
-    #     "HOST": "localhost",
-    #     "PORT": "3306",
-    # }
-    # "default": {
-    #     "ENGINE": "django.db.backends.postgresql_psycopg2",
-    #     "NAME": "events",
-    #     "USER": "root",
-    #     "PASSWORD": "",
-    #     "HOST": "localhost",
-    #     "PORT": "3306",
-    # }
     "default": {
-        "ENGINE": os.environ.get("ENGINE"),
+        'ENGINE': 'django.db.backends.mysql',
         "NAME": os.environ.get("NAME"),
         "USER": os.environ.get("USER"),
         "PASSWORD": os.environ.get("PASSWORD"),
@@ -144,7 +128,9 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type

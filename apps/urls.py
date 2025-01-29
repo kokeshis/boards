@@ -20,10 +20,12 @@ from django.urls import include, path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+import login.views as login
 
 app_name = "apps"
 urlpatterns = [
     path("", views.HomeView.as_view(), name="index"),
-    path("login/", include("login.urls")),
     path("admin/", admin.site.urls),
+    path("hello/", include("login.urls")),
+    path("myapp/", include("myapp.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

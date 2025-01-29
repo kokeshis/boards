@@ -21,7 +21,7 @@
         <div class="d-flex flex-wrap">
             <a href="{% url 'index' %}"
                 class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none ms-3">
-                <img src="{% static 'logo.png' %}"  class="bi me-2" width="40" height="32" role="img"></img>
+                <img src="{% static 'logo.png' %}"  class="bi me-2" width="40" height="32" role="img">
             </a>
             <a href="{% url 'index' %}"
                 class="nav d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
@@ -30,6 +30,8 @@
             <ul class="nav me-auto">
                 <li class="nav-item"><a href="{% url 'index' %}" class="nav-link link-body-emphasis px-2 active"
                         aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="{% url 'myapp:index' %}" class="nav-link link-body-emphasis px-2 active"
+                    aria-current="page">Myapp</a></li>
             </ul>
             {% if user.is_authenticated %}
             <div class="nav d-block flex-shrink-0 dropdown">
