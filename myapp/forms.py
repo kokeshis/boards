@@ -14,6 +14,7 @@ class GoodForm(forms.ModelForm):
         model = Good
         fields = ["owner", "message"]
 
+
 class PostForm(forms.Form):
     content = forms.CharField(
         max_length=500,

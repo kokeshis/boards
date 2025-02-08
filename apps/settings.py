@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app", "localhost"]
 INSTALLED_APPS = [
     "login.apps.LoginConfig",
     "myapp.apps.MyappConfig",
+    "pia.apps.PiaConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -47,7 +48,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
+    # "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -58,10 +59,8 @@ ROOT_URLCONF = "apps.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-            os.path.join(BASE_DIR, "templates"),
-        ],
-        "APP_DIRS": True,
+        "DIRS": [BASE_DIR / "templates"],  # プロジェクト全体のテンプレートディレクトリ
+        "APP_DIRS": True,  # アプリ内のtemplatesも自動で探す
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
@@ -81,8 +80,8 @@ WSGI_APPLICATION = "apps.wsgi.app"
 
 DATABASES = {
     "default": {
-        "ENGINE": os.environ.get("ENGINE"),
-        "NAME": os.environ.get("NAME"),
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
         "USER": os.environ.get("USER"),
         "PASSWORD": os.environ.get("PASSWORD"),
         "HOST": os.environ.get("HOST"),
@@ -137,3 +136,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
